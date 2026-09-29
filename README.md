@@ -126,6 +126,10 @@ No. Google does not show review stars for a local business that marks up reviews
 - **Keep name, address and phone identical** on your site, your Google Business Profile and your directory listings.
 - **One location, one page.** A business with several locations should give each one its own page and its own JSON-LD block.
 
+## Related
+
+- 🤖 [Local SEO Skills for AI Agents](https://github.com/ahmettasdemirusa/local-seo-skills): teach Claude Code, Codex and other agents to audit local SEO, write this markup, optimize Google Business Profiles and handle reviews within Google and FTC rules.
+
 ## Development
 
 ```bash
