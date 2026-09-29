@@ -81,6 +81,45 @@ const problems = LocalSchema.validate(state);   // [{ level, field, message }]
 const html = LocalSchema.scriptTag(jsonLd);      // ready-to-paste <script> block
 ```
 
+## Supported business types
+
+Pick the most specific type that fits; Google recommends the most specific LocalBusiness subtype available.
+
+- **General:** Local business (`LocalBusiness`), Professional service (`ProfessionalService`)
+- **Food & drink:** Restaurant, Fast food restaurant, Cafe or coffee shop, Bakery, Bar or pub, Ice cream shop, Winery, Brewery
+- **Home services & trades:** Plumber, Electrician, HVAC (`HVACBusiness`), Roofing contractor, General contractor, House painter, Locksmith, Moving company, Home & construction (`HomeAndConstructionBusiness`)
+- **Health & medical:** Dentist, Physician, Medical clinic, Optician, Pharmacy, Veterinary care
+- **Legal, finance & real estate:** Law firm / attorney (`LegalService`), Accounting service, Insurance agency, Financial service, Real estate agent
+- **Beauty & fitness:** Beauty salon, Hair salon, Nail salon, Day spa, Health club, Gym (`ExerciseGym`)
+- **Automotive:** Auto repair, Auto body shop, Auto dealer, Car wash (`AutoWash`)
+- **Retail:** Store, Clothing store, Furniture store, Home goods store, Hardware store, Jewelry store, Florist
+- **Lodging & care:** Hotel, Motel, Bed and breakfast, Child care
+
+Missing a type? [Open an issue](https://github.com/ahmettasdemirusa/local-business-schema-generator/issues). Adding one is a one-line change in `schema.js`.
+
+## FAQ
+
+**What is LocalBusiness schema?**
+It is structured data in the [schema.org](https://schema.org/LocalBusiness) vocabulary that tells search engines what a business is, where it is, when it is open and how to reach it. Google reads it in JSON-LD format, which is what this tool produces.
+
+**Which properties does Google require?**
+Only two: `name` and `address`. Google also recommends `geo`, `openingHoursSpecification`, `telephone`, `url`, `priceRange`, `menu` and `servesCuisine` where they apply. See Google's [local business structured data guide](https://developers.google.com/search/docs/appearance/structured-data/local-business).
+
+**Where do I put the code?**
+On the page for that business location, as a `<script type="application/ld+json">` block. The `url` should point to that location's own page.
+
+**Will it improve my rankings?**
+Structured data does not guarantee a ranking or a rich result. It helps Google understand the business and makes the page eligible for search features. Google bases local results mainly on relevance, distance and prominence, so keep your [Google Business Profile](https://support.google.com/business/answer/7091) complete and accurate as well.
+
+**How do I mark a day as closed, or open 24 hours?**
+The hours editor handles both for you. Following Google's convention, a closed day becomes `opens` and `closes` both `"00:00"`, and a 24-hour day becomes `"00:00"` to `"23:59"`. Hours that run past midnight, such as 18:00 to 03:00, go in a single entry.
+
+**I have several locations. What should I do?**
+Give each location its own page, and put a separate LocalBusiness block on each one.
+
+**Can I add my Google reviews and star rating?**
+No. Google does not show review stars for a local business that marks up reviews about itself. That includes embedded Google or Facebook review widgets. See Google's [review snippet guidelines](https://developers.google.com/search/docs/appearance/structured-data/review-snippet).
+
 ## Local SEO tips
 
 - **Don't mark up reviews of your own business.** Google does not show review stars for a local business that marks up reviews about itself, and that includes embedded Google or Facebook review widgets.
