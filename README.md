@@ -32,7 +32,7 @@ This tool writes the markup **and** tells you what is wrong with it, before you 
   - **warnings**: you lose a feature or a signal
   - **tips**: good practice
 - **Opening hours editor**: closed days and 24-hour days use Google's conventions, and days with the same hours are grouped automatically
-- **Restaurant fields** appear only for food businesses: `servesCuisine`, `menu`, `acceptsReservations`
+- **Restaurant fields** appear only for food businesses: `servesCuisine` and `menu` (both documented by Google), plus schema.org's `acceptsReservations`
 - **Profiles and service areas**: `sameAs` links (Google Business Profile, Facebook, Instagram, Yelp) and `areaServed` cities
 - **Share link**: the whole form is encoded in the URL, so you can send a draft to a client or a colleague
 - **Private by design**: nothing leaves your browser; your last draft is kept in `localStorage`
@@ -83,7 +83,7 @@ const html = LocalSchema.scriptTag(jsonLd);      // ready-to-paste <script> bloc
 
 ## Local SEO tips
 
-- **Don't mark up reviews of your own business.** Google does not show review stars for a local business that marks up reviews about itself.
+- **Don't mark up reviews of your own business.** Google does not show review stars for a local business that marks up reviews about itself, and that includes embedded Google or Facebook review widgets.
 - **Keep name, address and phone identical** on your site, your Google Business Profile and your directory listings.
 - **One location, one page.** A business with several locations should give each one its own page and its own JSON-LD block.
 
