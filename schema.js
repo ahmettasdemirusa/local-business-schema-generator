@@ -48,6 +48,16 @@
 
   function isFood(type) { return !!FOOD_TYPES[type]; }
 
+  // Types in the picker that schema.org does not place under LocalBusiness.
+  // Google accepts several types as an array, so they are emitted together with
+  // LocalBusiness to stay eligible for local business features.
+  var NOT_LOCAL_BUSINESS = { VeterinaryCare: true };
+
+  function typeValue(type) {
+    type = type || 'LocalBusiness';
+    return NOT_LOCAL_BUSINESS[type] ? [type, 'LocalBusiness'] : type;
+  }
+
   function defaultState() {
     var hours = {};
     DAYS.forEach(function (d, i) {
@@ -136,7 +146,7 @@
   }
 
   function build(s) {
-    var o = { '@context': 'https://schema.org', '@type': s.type || 'LocalBusiness' };
+    var o = { '@context': 'https://schema.org', '@type': typeValue(s.type) };
     var url = String(s.url || '').trim();
     if (url) o['@id'] = url.replace(/#.*$/, '') + '#business';
     if (s.name.trim()) o.name = s.name.trim();
@@ -176,7 +186,7 @@
       o.areaServed = oneOrMany(areas.map(function (a) { return { '@type': 'City', name: a }; }));
     }
 
-    if (isFood(o['@type'])) {
+    if (isFood(s.type)) {
       var cuisine = list(s.cuisine);
       if (cuisine.length) o.servesCuisine = oneOrMany(cuisine);
       if (s.menu.trim()) o.menu = s.menu.trim();

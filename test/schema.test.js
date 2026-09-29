@@ -74,6 +74,14 @@ test('script tag cannot be broken out of by user text', () => {
   assert.strictEqual(tag.match(/<\/script>/g).length, 1);
 });
 
+test('types outside LocalBusiness are emitted together with LocalBusiness', () => {
+  const s = S.exampleState();
+  s.type = 'VeterinaryCare';
+  assert.deepStrictEqual(S.build(s)['@type'], ['VeterinaryCare', 'LocalBusiness']);
+  s.type = 'Dentist';
+  assert.strictEqual(S.build(s)['@type'], 'Dentist');
+});
+
 test('single values are not wrapped in arrays', () => {
   const s = S.exampleState();
   s.images = 'https://www.example.com/one.jpg';
